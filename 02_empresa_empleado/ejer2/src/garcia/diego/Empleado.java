@@ -57,7 +57,7 @@ public class Empleado {
         this.fechaContrato = fechaContrato;
     }
 
-    @Override
+  /* @Override
     public String toString() {
         return "Empleado{" +
                 "nombre='" + nombre + '\'' +
@@ -65,5 +65,5 @@ public class Empleado {
                 ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 ", fechaContrato='" + fechaContrato + '\'' +
                 '}';
-    }
+    }*/
 }
