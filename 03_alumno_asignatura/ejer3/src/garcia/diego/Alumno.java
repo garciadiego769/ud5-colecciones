@@ -3,17 +3,15 @@ package garcia.diego;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Alumno {
+public class Alumno{
     private String nombre;
     private String apellidos;
     private String email;
+    //asociación
+    private List<Asignatura> asignaturas= new ArrayList<>();
 
     public Alumno() {
     }
-
-    //Conexión
-    private List<Asignatura> asignaturas = new ArrayList<>();
-
 
     public Alumno(String nombre, String apellidos, String email) {
         this.nombre = nombre;
@@ -44,9 +42,14 @@ public class Alumno {
     public void setEmail(String email) {
         this.email = email;
     }
-//Crear getter de la lista. NO SETTER PARA NO MANIPULARLA
-public List<Asignatura> getAsignaturas() {
-    return asignaturas;}
+
+    public List<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignatura> asignaturas) {
+        this.asignaturas = asignaturas;
+    }
 
     @Override
     public String toString() {
@@ -54,6 +57,7 @@ public List<Asignatura> getAsignaturas() {
                 "nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", email='" + email + '\'' +
+                ", asignaturas=" + asignaturas +
                 '}';
     }
 }

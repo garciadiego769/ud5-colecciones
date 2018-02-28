@@ -10,92 +10,115 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         // write your code here
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       int respuesta;
+       String nombre;
+       String apellidos;
+       String mail;
 
-        int respuesta;
-
-        List<Asignatura> asignaturas = new ArrayList<>();
-        List<Alumno> alumnos = new ArrayList<>();
-//Datos de depuración, para no introducir datos cada vez que se lanze el programa
-        alumnos.add(new Alumno("Diego", "Garcia", "aaa@aa.com"));
+        List<Alumno> alumnos= new ArrayList<>();
+        List<Asignatura> asignaturas=new ArrayList<>();
+        alumnos.add(new Alumno("Ion", "Jaureguialzo", "ijaureguialzo@egibide.org"));
         asignaturas.add(new Asignatura("Programación", 8));
-        do {
-            System.out.println("1. Crear nuevo alumno. \n" +
-                    "2. Crear nueva asignatura. \n" +
-                    "3. Matricular alumno en asignatura. \n" +
-                    "4. Listado de alumnos matriculados en una asignatura. \n" +
-                    "5. Listado de asignaturas en las que está matriculado un alumno y total de horas. \n" +
-                    "6. Salir \n" + "Escribe:");
-            respuesta = Integer.parseInt(br.readLine());
+       do{
+           System.out.println("1. Crear nuevo alumno. \n" +
+                   "2. Crear nueva asignatura. \n" +
+                   "3. Matricular alumno en asignatura. \n" +
+                   "4. Listado de alumnos matriculados en una asignatura. \n" +
+                   "5. Listado de asignaturas en las que está matriculado un alumno y total de horas. \n" +
+                   "6. Salir ");
+           System.out.println("Escribe:");
+           respuesta=Integer.parseInt(br.readLine());
 
-            switch (respuesta) {
-                case 1:
-                    //Nuevo alumno
-                    //Pedir datos
-                    System.out.println("Nombre:");
-                    String nombre = br.readLine();
-                    System.out.println("Apellido:");
-                    String apellido = br.readLine();
-                    System.out.println("Mail:");
-                    String mail = br.readLine();
-                    //Crear objeto y rellenarlo
-                    Alumno a = new Alumno(nombre, apellido, mail); //usamos el constructor
-                            /*    también podemos hacer
-                            a.setNombre(nombre);
-                            a.setApellidos(apellido);
-                            a.setEmail(mail);*/
+           switch (respuesta){
+               case 1:
+                   //nuevo alumno
 
-                    //Añadir objeto a lista
-                    alumnos.add(a);
-                    break;
-                case 2:
-                    //Nueva asignatura
-                    //Pedir datos
-                    System.out.println("Nombre:");
-                    nombre = br.readLine();
+                   System.out.println("Nombre:");
+                   nombre=br.readLine();
+                   System.out.println("Apellidos:");
+                   apellidos=br.readLine();
+                   System.out.println("Email:");
+                   mail=br.readLine();
 
-                    System.out.println("Nº horas semanales:");
-                    int numHoras = Integer.parseInt(br.readLine());
+                   Alumno a = new Alumno(nombre,apellidos,mail);
 
-                    //Crear objeto y rellenarlo
-                    //Añadir el objeto a la lista
-                    asignaturas.add(new Asignatura(nombre, numHoras));
-                    break;
-                case 3:
-                    //Matricular a un alumno en una asignatura
+                   alumnos.add(a);
+                   break;
+               case 2:
+                   //Nueva asignatura
+                   System.out.println("Nombre:");
+                   nombre=br.readLine();
+                   System.out.println("Horas Semanales:");
+                   int horasSemanales = Integer.parseInt(br.readLine());
 
-                    //Qué alumno?
-                    //1. Mostrar todos
-                    for (Alumno alumTemp : alumnos) {
-                        System.out.println(alumTemp);
-                    }
-                    //Pedir nombre
-                    System.out.println("Nombre alumno a matricular:");
-                    String nombreAlumno = br.readLine();
-                    //Recorrer la coleccion y buscar alumno
-                    int i = 0;
-                    while (i < alumnos.size() && !nombreAlumno.equalsIgnoreCase(alumnos.get(i).getNombre())) {
-                        //Dejamos que el bucle avanze siempre que NO encontremos el nombre
-                        i++;
-                    }
-                    //Preguntamos porqué se ha parado
-                    if (i < alumnos.size()) {
-                        //Encontrado
-                    }
-                    //Qué asignatura?
-                    //Relacionar alumno y asignatura
-                    //Añadir al alumno en la lista de la asignatura
-                    //Añadir la asignatura en la lista del alumno
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                default:
-                    break;
+                   Asignatura as=new Asignatura(nombre,horasSemanales);
 
-            }
-        } while (respuesta != 6);
+                   asignaturas.add(as);
+                   break;
+               case 3:
+                   //Añadir alumno a asignatura
 
+                   //Mostrar todos los alumnos
+                   for (Alumno al:alumnos) {
+                       System.out.println(al);
+                   }
+                   //Pedir nombre alumno
+                   System.out.println("Nombre alumno:");
+                   nombre=br.readLine();
+
+                   //buscar alumno y guardar posicion
+                   int i=0;
+                   while (i < alumnos.size() &&
+                           !nombre.equalsIgnoreCase(alumnos.get(i).getNombre())
+                           ) {
+                       i++;
+                   }
+                   Alumno alumnoencontrado=null;
+
+                   if (i<alumnos.size()){
+                    alumnoencontrado=alumnos.get(i);
+                   }
+
+                   //Que asignatura??
+                   System.out.println("Asignaturas:");
+                   for (Asignatura asigTemp:asignaturas) {
+                       System.out.println(asigTemp);
+                   }
+                   //Pedir nombre asignatura
+                   System.out.println("Nombre asignatura");
+                   nombre=br.readLine();
+
+                   int j=0;
+                   while (j<asignaturas.size() &&
+                           !nombre.equalsIgnoreCase(asignaturas.get(i).getNombre())){
+                       i++;
+                   }
+                   Asignatura asignaturaEncontrada = null;
+
+                   if (i<asignaturas.size()){
+                       //Encontrada!!
+                       asignaturaEncontrada=asignaturas.get(i);
+                   }
+
+                   //Ya tenemos los dos encontrados, pero comprobamos
+                   if(asignaturaEncontrada!=null && alumnoencontrado!=null){
+                       //todo OK
+                       //Añadimos al alumno en la lista de la asignatura
+                       asignaturaEncontrada.getAlumnos().add(alumnoencontrado);
+                       //Añadimos la asignatura en la lista del alumno
+                       alumnoencontrado.getAsignaturas().add(asignaturaEncontrada);
+
+                       System.out.println("Alumno matriculado correctamente");
+                   }else{
+                       System.out.println("Algo ha ido mal");
+                   }
+                   break;
+               case 4: //Listado de alumnos matriculados en una asignatura
+                   //Que asignatura??
+
+
+           }
+       }while (respuesta!=6);
     }
 }

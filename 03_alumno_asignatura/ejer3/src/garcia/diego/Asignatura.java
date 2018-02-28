@@ -1,23 +1,30 @@
 package garcia.diego;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Asignatura {
     private String nombre;
     private int horasSemanales;
+    //asociación
+    private List<Alumno> alumnos=new ArrayList<>();
 
     public Asignatura() {
+
     }
-
-    //Conexión
-    private List<Alumno> alumnos = new ArrayList<>();
-
 
     public Asignatura(String nombre, int horasSemanales) {
         this.nombre = nombre;
         this.horasSemanales = horasSemanales;
+    }
+
+    @Override
+    public String toString() {
+        return "Asignatura{" +
+                "nombre='" + nombre + '\'' +
+                ", horasSemanales=" + horasSemanales +
+                ", alumnos=" + alumnos +
+                '}';
     }
 
     public String getNombre() {
@@ -35,8 +42,12 @@ public class Asignatura {
     public void setHorasSemanales(int horasSemanales) {
         this.horasSemanales = horasSemanales;
     }
- //Encapsular con el main. SÓLO GETTER
+
     public List<Alumno> getAlumnos() {
         return alumnos;
+    }
+
+    public void setAlumnos(List<Alumno> alumnos) {
+        this.alumnos = alumnos;
     }
 }
